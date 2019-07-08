@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import java.io.File
+import java.io.FileOutputStream
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,7 +27,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun writeToSharedPrefs(prefs : SharedPreferences) {
+    fun writeToSharedPrefs(prefs: SharedPreferences) {
         val editor = prefs.edit()
         editor.putInt("top_score", 86)
         editor.putString("str", "android")
@@ -34,7 +36,7 @@ class MainActivity : AppCompatActivity() {
         editor.apply()
     }
 
-    fun readFromSharedPrefs(prefs : SharedPreferences) {
+    fun readFromSharedPrefs(prefs: SharedPreferences) {
         val prefsDt = """
                 Boolean ${prefs.getBoolean("bool", false)}
                 Int ${prefs.getInt("top_score", -1)}
@@ -42,5 +44,17 @@ class MainActivity : AppCompatActivity() {
         """.trimIndent()
 
         Log.i("@codekul", prefsDt)
+    }
+
+    fun writeToInternalStorage() {
+        val file = File(filesDir, "my.txt")
+        Log.i("@codekul", "Path to internal storage ${file.absolutePath}")
+        file.bufferedWriter().use { bw -> bw.write("This is my data") }
+    }
+
+    fun readFromInternalStorage() {
+        val file = File(filesDir, "my.txt")
+        val data = file.readText()
+        Log.i("@codekul" , "Data available in file is $data")
     }
 }

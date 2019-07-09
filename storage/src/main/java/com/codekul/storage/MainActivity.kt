@@ -15,6 +15,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val app = application as PhotoApp
+
         val appPrefs = getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
         val actPrefs = getPreferences(Context.MODE_PRIVATE)
 
@@ -22,14 +24,26 @@ class MainActivity : AppCompatActivity() {
 //            readFromSharedPrefs(appPrefs)
 //            readFromInternalStorage()
 //            readFromPrivateExternalStorage()
-            readFromPublicExternalStorage()
+//            readFromPublicExternalStorage()
+
+            Thread {
+                app.db.photoDao().allPhotos().forEach { ph ->
+                    Log.i("@codekul", "Photo credits to ${ph.pc}")
+                }
+            }.start()
         }
 
         btShWr.setOnClickListener {
 //            writeToSharedPrefs(appPrefs)
 //            writeToInternalStorage()
 //            writeToPrivateExternalStorage()
-            writeToPublicExternalStorage()
+//            writeToPublicExternalStorage()
+
+            Thread {
+                app.db.photoDao().create(
+                    MyPhoto(1, "Pic at office", "Walkig", "me")
+                )
+            }.start()
         }
     }
 

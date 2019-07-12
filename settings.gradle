@@ -1,1 +1,1 @@
-include ':app', ':myapplication', ':storage', ':materialdesignbasic', ':navdrawer'
+include ':app', ':myapplication', ':storage', ':materialdesignbasic', ':navdrawer', ':httpandobservables'

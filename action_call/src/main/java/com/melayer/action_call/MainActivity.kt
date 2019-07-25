@@ -40,13 +40,11 @@ class MainActivity : AppCompatActivity() {
         }
         else{
             if (Permissions.checkAndRequestPermissions(this@MainActivity)) {
-                    val callIntent=Intent(Intent.ACTION_CALL)
-                    callIntent.data = Uri.parse("tel:"+edtPhone.text.toString())
-                    startActivity(callIntent)
-            } else {
                 val callIntent=Intent(Intent.ACTION_CALL)
                 callIntent.data = Uri.parse("tel:"+edtPhone.text.toString())
                 startActivity(callIntent)
+            } else {
+
             }
         }
 

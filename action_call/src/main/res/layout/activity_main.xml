@@ -20,6 +20,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/edtPhone"
                 android:inputType="phone"
+                android:digits="1234567890"
                 android:ems="10"
                 android:singleLine="true"
                 android:maxLength="10"
